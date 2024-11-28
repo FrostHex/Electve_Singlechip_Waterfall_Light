@@ -1,0 +1,63 @@
+        THUMB
+        REQUIRE8
+        PRESERVE8
+
+__ARM_use_no_argv EQU 0
+
+        EXPORT __ARM_use_no_argv
+        EXPORT main [CODE]
+
+        IMPORT ||Lib$$Request$$armlib|| [CODE,WEAK]
+        IMPORT RCC_AHB1PeriphClockCmd [CODE]
+        IMPORT GPIO_Init [CODE]
+        IMPORT Delay_Init [CODE]
+        IMPORT GPIO_Write [CODE]
+        IMPORT Delay_Ms [CODE]
+
+        AREA ||i.main||, CODE, READONLY, ALIGN=2
+
+main PROC
+        PUSH     {r2-r4,lr}
+        MOVS     r1,#1
+        MOVS     r0,#0x20
+        BL       RCC_AHB1PeriphClockCmd
+        MOV      r0,#0xffff
+        STR      r0,[sp,#0]
+        MOVS     r0,#1
+        STRB     r0,[sp,#4]
+        MOVS     r0,#0
+        STRB     r0,[sp,#6]
+        MOVS     r0,#1
+        STRB     r0,[sp,#5]
+        MOV      r1,sp
+        LDR      r0,|L0.92|
+        BL       GPIO_Init
+        BL       Delay_Init
+        MOVS     r1,#0xff
+        LDR      r0,|L0.92|
+        BL       GPIO_Write
+        B        |L0.88|
+|L0.56|
+        MOVS     r1,#0
+        LDR      r0,|L0.92|
+        BL       GPIO_Write
+        MOV      r0,#0x1f4
+        BL       Delay_Ms
+        MOVS     r1,#0xff
+        LDR      r0,|L0.92|
+        BL       GPIO_Write
+        MOV      r0,#0x1f4
+        BL       Delay_Ms
+|L0.88|
+        B        |L0.56|
+        ENDP
+
+        DCW      0x0000
+|L0.92|
+        DCD      0x40021400
+
+        AREA ||.arm_vfe_header||, DATA, READONLY, NOALLOC, ALIGN=2
+
+        DCD      0x00000000
+
+        END
