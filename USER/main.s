@@ -100,92 +100,21 @@ main PROC  ; compile instruction (编译指示指令), which indicates it's a sub-func
 		BL      Delay_Init				;delay initialize
 
 		; GPIOC->ODR |= LED_ON
-		;LDR 	R0,=GPIOC_ODR
-		;LDR		R1,=LED7_ON
-		;STR		R1,[R0] 
-        ;MOV     r0,#0x1f4
-		; BL      Delay_Ms
+		LDR 	R0,=GPIOC_ODR
+		LDR		R1,=LED7_ON
+		STR		R1,[R0] 
+        MOV     r0,#0x1f4
+		 BL      Delay_Ms
 
 |loop|
         LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED7_ON
+		LDR     R1, [R0]           ; Load current LED state
+		ROR     R1, R1, #1         ; 循环右移1位, 7灭6亮, 以此类推
+		CMP     R1, #0x80          ; Compare R1 with 10000000b (0x80)
+		MOVHI   R1, #0x80          ; If the result of CMP is "higher", then set R1 to 10000000b
 		STR		R1,[R0]
         MOV     r0,#0x1f4
         BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED7_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED6_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED6_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED5_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED5_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED4_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED4_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED3_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED3_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED2_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED2_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED1_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED1_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-		
-		LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED0_ON
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
-        BL      Delay_Ms				; delay 500ms
-        LDR 	R0,=GPIOC_ODR
-		LDR		R1,=LED0_OFF
-		STR		R1,[R0]
-        MOV     r0,#0x1f4
 		
 		B       |loop|
         ENDP    ; the end of the sub-function
