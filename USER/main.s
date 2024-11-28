@@ -35,11 +35,31 @@ RCC_AHB1ENR             EQU     RCC_BASE + RCC_AHB1ENR_OFFSET
 
 GPIOC_EN                EQU     1<<2
 
-MODER3_OUT              EQU     1<<6 ; every port occupies 2 places, and set to 01 for universal output mode, which can be found in STM32F4xx manual, P187
+MODER0_OUT              EQU     1<<0
+MODER1_OUT              EQU     1<<2 ; every port occupies 2 places, and set to 01 for universal output mode, which can be found in STM32F4xx manual, P187
+MODER2_OUT              EQU     1<<4 
+MODER3_OUT              EQU     1<<6 
+MODER4_OUT              EQU     1<<8
+MODER5_OUT              EQU     1<<10 
+MODER6_OUT              EQU     1<<12 
+MODER7_OUT              EQU     1<<14 
 
+LED0_ON                 EQU     1<<0
+LED0_OFF                EQU     0<<0
+LED1_ON                 EQU     1<<1
+LED1_OFF                EQU     0<<1
+LED2_ON                 EQU     1<<2
+LED2_OFF                EQU     0<<2
 LED3_ON                 EQU     1<<3
 LED3_OFF                EQU     0<<3
-
+LED4_ON                 EQU     1<<4
+LED4_OFF                EQU     0<<4
+LED5_ON                 EQU     1<<5
+LED5_OFF                EQU     0<<5
+LED6_ON                 EQU     1<<6
+LED6_OFF                EQU     0<<6
+LED7_ON                 EQU     1<<7
+LED7_OFF                EQU     0<<7
 	
         EXPORT __ARM_use_no_argv
         EXPORT main
@@ -67,6 +87,7 @@ main PROC  ; compile instruction (编译指示指令), which indicates it's a sub-func
 		; the default value of MODE register is 00, which is input mode
 		LDR 	R0,=GPIOC_MODER
 		LDR		R1,[R0]
+		ORR		R1,#MODER0_OUT
 		ORR		R1,#MODER3_OUT
 		STR		R1,[R0]
 
@@ -75,6 +96,8 @@ main PROC  ; compile instruction (编译指示指令), which indicates it's a sub-func
 		; GPIOC->ODR |= LED_ON
 		LDR 	R0,=GPIOC_ODR
 		LDR		R1,=LED3_ON
+		LDR		R2,=LED0_ON
+		ORR     R1, R1, R2
 		STR		R1,[R0] 
 
         MOV     r0,#0x1f4
@@ -83,6 +106,8 @@ main PROC  ; compile instruction (编译指示指令), which indicates it's a sub-func
 |loop|
         LDR 	R0,=GPIOC_ODR
 		LDR		R1,=LED3_OFF
+		LDR		R2,=LED0_OFF
+		ORR     R1, R1, R2
 		STR		R1,[R0]
 
         MOV     r0,#0x1f4
@@ -90,6 +115,8 @@ main PROC  ; compile instruction (编译指示指令), which indicates it's a sub-func
 
         LDR 	R0,=GPIOC_ODR
 		LDR		R1,=LED3_ON
+		LDR		R2,=LED0_ON
+		ORR     R1, R1, R2
 		STR		R1,[R0]
  
         MOV     r0,#0x1f4

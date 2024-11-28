@@ -282,10 +282,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>1</Focus>
-      <ColumnNumber>27</ColumnNumber>
+      <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>93</TopLine>
-      <CurrentLine>117</CurrentLine>
+      <TopLine>67</TopLine>
+      <CurrentLine>86</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.s</PathWithFileName>
       <FilenameWithoutPath>main.s</FilenameWithoutPath>
@@ -316,7 +316,7 @@
       <Focus>1</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>80</TopLine>
+      <TopLine>81</TopLine>
       <CurrentLine>90</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\SYSTEM\delay.s</PathWithFileName>
@@ -340,7 +340,7 @@
       <Focus>1</Focus>
       <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
+      <TopLine>2</TopLine>
       <CurrentLine>6</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\CMSIS\system_stm32f4xx.c</PathWithFileName>
@@ -356,7 +356,7 @@
       <Focus>1</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>176</TopLine>
+      <TopLine>177</TopLine>
       <CurrentLine>185</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\CMSIS\startup_stm32f40_41xxx.s</PathWithFileName>
@@ -380,7 +380,7 @@
       <Focus>1</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>479</TopLine>
+      <TopLine>480</TopLine>
       <CurrentLine>486</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\FWLIB\src\stm32f4xx_gpio.c</PathWithFileName>
